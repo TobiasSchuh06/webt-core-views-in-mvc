@@ -1,0 +1,16 @@
+{
+    "name": "tobi/webt-core-views-in-mvc",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Tobi\\WebtCoreViewsInMvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TobiasSchuh06",
+            "email": "tobias.schuh@htl.rennweg.at"
+        }
+    ],
+    "require": {}
+}

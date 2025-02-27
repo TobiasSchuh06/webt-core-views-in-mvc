@@ -30,11 +30,10 @@ class Hotel{
         <div class='$class'>
             <h3>{$this->getName()}</h3>
             <div>
-                <p>{$stars}</p>
+                <h5>{$stars}</h5>
                 <p>{$this->getDescription()}</p>
             </div>
         </div>
     Template;
-
     }
 }

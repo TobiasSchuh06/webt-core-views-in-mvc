@@ -14,7 +14,7 @@
     border-radius: 10px;
 }
 
-.div3 {
+.div0 {
     background-color: #90ee90;
     color: darkgreen;
     padding: 20px;
@@ -22,7 +22,7 @@
     border-radius: 10px;
 }
 
-.div1 div, .div2 div, .div3 div {
+.div1 div, .div2 div, .div0 div {
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
     padding: 15px;

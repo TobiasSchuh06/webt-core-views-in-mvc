@@ -2,27 +2,33 @@
 
 require_once "../vendor/autoload.php";
 
-use Tobi\WebtCoreViewsInMvc\Model\Entity\Hotel;
+use Bernh\WebtCoreViewsInMvc\Model\Entity\Hotel;
 
-$file = fopen("../templates/index.html","r");
+$hotels = [
+    new Hotel(1, "Hotel Sonnenblick", 6, "Ein idyllisches Hotel am See mit Bergblick, stilvollen Zimmern und einem luxuriösen Wellnessbereich. Perfekt für Erholung und Outdoor-Aktivitäten."),
+    new Hotel(2, "CityLodge Metropolis", 3, "Modernes Designhotel im Stadtzentrum mit top ausgestatteten Zimmern. Ideal für Geschäftsreisende und Städtetrips."),
+    new Hotel(3, "Strandhotel Meerblick", 0, "Direkt am Sandstrand gelegen, mit Meerblick, Spa und exzellenter Küche. Perfekt für entspannte Strandurlaube."),
+    new Hotel(4, "Waldhotel Ruheoase", 4, "Ein ruhiges Hotel im Wald, ideal für Wanderer und Naturliebhaber. Mit gemütlichen Zimmern und entspannendem Ambiente."),
+    new Hotel(5, "Bergresort Alpenblick", 5, "Ein exklusives Resort in den Alpen mit atemberaubendem Blick, luxuriösen Zimmern und einem privaten Spa."),
+    new Hotel(6, "Flughafenhotel Jetset", 3, "Ein komfortables Hotel direkt am Flughafen mit schnellen Verbindungen und modernen Annehmlichkeiten."),
+    new Hotel(7, "Seehotel Panorama", 5, "Direkt am See gelegen, mit einem tollen Wellnessbereich und Aktivitäten wie Segeln und Wandern."),
+    new Hotel(8, "Luxus Hotel Royal", 5, "Ein exklusives Hotel mit 5-Sterne-Annehmlichkeiten, hochklassigen Restaurants und einem luxuriösen Spa."),
+    new Hotel(9, "Pension Sonnenhof", 3, "Eine charmante Pension inmitten von Wäldern, ideal für Naturfreunde und Wanderer."),
+    new Hotel(10, "Hotel Parkblick", 4, "Modernes Hotel mit Blick auf den Stadtpark, ideal für einen ruhigen und entspannenden Aufenthalt."),
+    new Hotel(11, "Hotel Panorama Berg", 4, "Hoch in den Bergen gelegen, mit spektakulärem Blick und komfortablen Zimmern für einen aktiven Urlaub."),
+    new Hotel(12, "Urlaubsresort Küstenglück", 4, "Resort direkt an der Küste mit einem privaten Strand, ideal für Familien und Entspannung."),
+];
 
-$hotel1 = new Hotel(1, "Hotel Sonnenblick", 6, "Ein idyllisches Hotel am See mit Bergblick, stilvollen Zimmern und einem luxuriösen Wellnessbereich. Perfekt für Erholung und Outdoor-Aktivitäten.");
-$hotel2 = new Hotel(2, "CityLodge Metropolis", 2, "Modernes Designhotel im Stadtzentrum mit top ausgestatteten Zimmern. Ideal für Geschäftsreisende und Städtetrips.");
-$hotel3 = new Hotel(3, "Strandhotel Meerblick", 20, "Direkt am Sandstrand gelegen, mit Meerblick, Spa und exzellenter Küche. Perfekt für entspannte Strandurlaube.");
+$template = fopen("../templates/index.html" , "r");
 
-$renderedTemplate = str_replace("###hotel1###", $hotel1->getName(), fread($file, filesize("../templates/index.html")));
-$renderedTemplate = str_replace("###hotel2###", $hotel2->getName(), $renderedTemplate);
-$renderedTemplate = str_replace("###hotel3###", $hotel3->getName(), $renderedTemplate);
+$hotelHtml = "";
+foreach ($hotels as $hotel) {
+    $hotelHtml .= $hotel->getHTML();
+}
 
-$renderedTemplate = str_replace("###stars1###", $hotel1->getStars(), $renderedTemplate);
-$renderedTemplate = str_replace("###stars2###", $hotel2->getStars(), $renderedTemplate);
-$renderedTemplate = str_replace("###stars3###", $hotel3->getStars(), $renderedTemplate);
-
-$renderedTemplate = str_replace("###info1###", $hotel1->getDescription(), $renderedTemplate);
-$renderedTemplate = str_replace("###info2###", $hotel2->getDescription(), $renderedTemplate);
-$renderedTemplate = str_replace("###info3###", $hotel3->getDescription(), $renderedTemplate);
+$renderedTemplate = str_replace("###hotels###", $hotelHtml, fread($template, filesize("../templates/index.html")));
 
 echo $renderedTemplate;
 
-fclose($file);
+fclose($template);
 ?>

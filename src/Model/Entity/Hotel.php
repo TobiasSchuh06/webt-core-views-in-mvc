@@ -27,13 +27,13 @@ class Hotel{
         $class = "div".$this->getId()%3;
         $stars = str_repeat("⭐",$this->getStars()).str_repeat("☆",5-$this->getStars());
         return <<<Template
-        <div class='$class'>
-            <h3>{$this->getName()}</h3>
-            <div>
-                <h5>{$stars}</h5>
-                <p>{$this->getDescription()}</p>
+            <div class='$class'>
+                <h3>{$this->getName()}</h3>
+                <div>
+                    <h5>{$stars}</h5>
+                    <p>{$this->getDescription()}</p>
+                </div>
             </div>
-        </div>
-    Template;
+        Template;
     }
 }

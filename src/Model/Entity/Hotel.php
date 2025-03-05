@@ -1,5 +1,6 @@
 <?php
 namespace Bernh\WebtCoreViewsInMvc\Model\Entity;
+
 class Hotel{
     public function __construct(protected int $id, protected String $name, protected int $stars, protected String $description)
     {
@@ -23,17 +24,11 @@ class Hotel{
     public function getId(){
         return $this->id;
     }
+    public function getStarStr(){
+        return str_repeat("⭐",$this->getStars()).str_repeat("☆",5-$this->getStars());
+    }
     public function getHTML(){
-        $class = "div".$this->getId()%3;
-        $stars = str_repeat("⭐",$this->getStars()).str_repeat("☆",5-$this->getStars());
-        return <<<Template
-            <div class='$class'>
-                <h3>{$this->getName()}</h3>
-                <div>
-                    <h5>{$stars}</h5>
-                    <p>{$this->getDescription()}</p>
-                </div>
-            </div>
-        Template;
+        
+        return $renderedTemplate;
     }
 }

@@ -22,13 +22,20 @@ $hotels = [
 $template = fopen("../templates/index.html" , "r");
 
 $hotelHtml = "";
+
 foreach ($hotels as $hotel) {
-    $hotelHtml .= $hotel->getHTML();
+    $template2 = fopen("../templates/partials/hotel.html", "r");
+    $class = 'div'.$hotel->getId()%3;
+    $template2 = fopen("../templates/partials/hotel.html", "r");
+    $renderedTemplate2 = str_replace("###name###", $hotel->getName(), fread($template2, filesize("../templates/partials/hotel.html")));
+    $renderedTemplate2 = str_replace("###class###", $class, $renderedTemplate2);
+    $renderedTemplate2 = str_replace("###stars###", $hotel->getStarStr(), $renderedTemplate2);
+    $renderedTemplate2 = str_replace("###description###", $hotel->getDescription(), $renderedTemplate2);
+    fclose($template2);
+    $hotelHtml .= $renderedTemplate2;
 }
 
 $renderedTemplate = str_replace("###hotels###", $hotelHtml, fread($template, filesize("../templates/index.html")));
-
-echo $renderedTemplate;
-
 fclose($template);
+echo $renderedTemplate;
 ?>
